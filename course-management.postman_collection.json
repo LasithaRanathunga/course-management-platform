@@ -1,0 +1,385 @@
+{
+  "info": {
+    "name": "Course Management System",
+    "_postman_id": "d5c36d6a-0c0b-46ab-91f4-bb6c9981abcd",
+    "description": "Postman collection for testing Course Management System backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "http://localhost:8080/api/auth/register",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "auth", "register"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"john\",\n  \"email\": \"john@example.com\",\n  \"password\": \"1234\",\n  \"role\": \"STUDENT\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "http://localhost:8080/api/auth/login",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "auth", "login"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"john\",\n  \"password\": \"1234\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete My Account",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:8080/api/auth/delete/john",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "auth", "delete", "john"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Students",
+      "item": [
+        {
+          "name": "Get All Students",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/students",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "students"]
+            }
+          }
+        },
+        {
+          "name": "Get Student by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/students/1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "students", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Student",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:8080/api/students/1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "students", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lecturers",
+      "item": [
+        {
+          "name": "Get All Lecturers",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/lecturers",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "lecturers"]
+            }
+          }
+        },
+        {
+          "name": "Get Lecturer by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/lecturers/1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "lecturers", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Lecturer",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:8080/api/lecturers/1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "lecturers", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Courses",
+      "item": [
+        {
+          "name": "Create Course",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "http://localhost:8080/api/courses",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "courses"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"CS101\",\n  \"title\": \"Intro to Computer Science\",\n  \"description\": \"Basic concepts\",\n  \"credits\": 3\n}"
+            }
+          }
+        },
+        {
+          "name": "Get All Courses",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/courses",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "courses"]
+            }
+          }
+        },
+        {
+          "name": "Update Course",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "http://localhost:8080/api/courses/1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "courses", "1"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Intro to CS Updated\",\n  \"description\": \"Updated description\",\n  \"credits\": 4\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Course",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:8080/api/courses/1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "courses", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Registrations",
+      "item": [
+        {
+          "name": "Register Student to Course",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "http://localhost:8080/api/registrations",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "registrations"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"student\": { \"id\": 1 },\n  \"course\": { \"id\": 2 }\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Registrations by Student",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/registrations/student/1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "registrations", "student", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Registrations by Course",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/registrations/course/2",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "registrations", "course", "2"]
+            }
+          }
+        },
+        {
+          "name": "Drop Registration",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:8080/api/registrations/1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "registrations", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Results",
+      "item": [
+        {
+          "name": "Assign Grade",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "http://localhost:8080/api/results",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "results"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"student\": { \"id\": 1 },\n  \"course\": { \"id\": 2 },\n  \"grade\": \"A\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Grade",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "http://localhost:8080/api/results/1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "results", "1"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"grade\": \"B\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Results by Student",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/results/student/1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "results", "student", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Results by Course",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/results/course/2",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "results", "course", "2"]
+            }
+          }
+        },
+        {
+          "name": "Delete Result",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:8080/api/results/1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "results", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Course Contents",
+      "item": [
+        {
+          "name": "Upload PDF",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "http://localhost:8080/api/course-contents/course/2",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "course-contents", "course", "2"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Lecture Notes Week 1\",\n  \"urlOrPath\": \"/files/notes1.pdf\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get PDFs by Course",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/course-contents/course/2",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "course-contents", "course", "2"]
+            }
+          }
+        },
+        {
+          "name": "Delete PDF",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:8080/api/course-contents/1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "course-contents", "1"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
