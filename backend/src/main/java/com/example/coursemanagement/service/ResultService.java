@@ -22,6 +22,8 @@ public class ResultService {
     }
 
     public Result assignGrade(Result result) {
+        System.out.println("##########");
+        System.out.println(result);
         if (resultRepository.existsByStudent_IdAndCourse_Id(
                 result.getStudent().getId(), result.getCourse().getId())) {
             throw new RuntimeException("Grade already assigned for this student in this course");

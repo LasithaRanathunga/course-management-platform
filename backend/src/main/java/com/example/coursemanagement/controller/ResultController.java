@@ -17,6 +17,8 @@ public class ResultController {
     // 🔹 Assign a grade to a student for a course
     @PostMapping
     public Result assignGrade(@RequestBody Result result) {
+
+        System.out.println("###############");
         return resultService.assignGrade(result);
     }
 
