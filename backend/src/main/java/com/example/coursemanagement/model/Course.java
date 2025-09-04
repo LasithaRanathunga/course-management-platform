@@ -1,5 +1,6 @@
 package com.example.coursemanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.*;
@@ -26,5 +27,6 @@ public class Course {
     private Lecturer lecturer;
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<CourseContent> contents = new ArrayList<>();
 }

@@ -80,12 +80,12 @@ public class AuthController {
         // Generate token
         String token = jwtUtil.generateToken(savedUser.getId(), savedUser.getUsername(), savedUser.getEmail(), savedUser.getRole());
 
-        return ResponseEntity.ok(new AuthResponse(token));
+        return ResponseEntity.ok(new AuthResponse(token, savedUser.getRole()));
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
-        User user = userRepository.findByUsername(request.getUsername())
+        User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
@@ -93,7 +93,7 @@ public class AuthController {
         }
 
         String token = jwtUtil.generateToken(user.getId(), user.getUsername(), user.getEmail(), user.getRole());
-        return ResponseEntity.ok(new AuthResponse(token));
+        return ResponseEntity.ok(new AuthResponse(token, user.getRole()));
     }
 
 //    @DeleteMapping("/me")

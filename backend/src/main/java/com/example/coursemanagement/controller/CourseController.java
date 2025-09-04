@@ -2,6 +2,7 @@ package com.example.coursemanagement.controller;
 
 import com.example.coursemanagement.model.Course;
 import com.example.coursemanagement.model.CourseContent;
+import com.example.coursemanagement.repository.LecturerRepository;
 import com.example.coursemanagement.repository.UserRepository;
 import com.example.coursemanagement.service.CourseService;
 import com.example.coursemanagement.service.CourseContentService;
@@ -27,6 +28,9 @@ public class CourseController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private LecturerRepository lecturerRepository;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -87,6 +91,24 @@ public class CourseController {
     @DeleteMapping("/{id}")
     public void deleteCourse(@PathVariable Long id) {
         courseService.deleteCourse(id);
+    }
+
+    @GetMapping("/by-lecturer")
+    public List<Course> getCoursesByLecturer(@RequestHeader("Authorization") String authHeader) {
+        String token = authHeader.substring(7);
+        String email = jwtUtil.extractEmail(token);
+
+        Long userId = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"))
+                .getId();
+
+        Long lecturerId = lecturerRepository.findByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"))
+                .getId();
+
+        System.out.println(lecturerId);
+
+        return courseService.getCoursesByLecturer(lecturerId);
     }
 
     // 🔹 Get all content for a course

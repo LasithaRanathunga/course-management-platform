@@ -9,4 +9,5 @@ import java.util.Optional;
 
 public interface LecturerRepository extends JpaRepository<Lecturer, Long>{
     Optional<Lecturer> findByUserId(Long userId);
+    Optional<Lecturer> findById(Long Id);
 }
