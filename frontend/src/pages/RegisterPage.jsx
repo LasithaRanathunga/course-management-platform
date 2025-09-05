@@ -11,6 +11,7 @@ export default function RegisterPage() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
     try {
       const res = await api.post("/auth/register", {
         username: name,
@@ -19,18 +20,18 @@ export default function RegisterPage() {
         role,
       });
 
-      const { token, role } = res.data;
+      const { token, role: userRole } = res.data;
 
       // Store in localStorage
       localStorage.setItem("token", token);
-      localStorage.setItem("role", role);
+      localStorage.setItem("role", userRole);
 
       alert("Registration successful!");
 
       // Redirect based on role
-      if (role === "STUDENT") {
+      if (userRole === "STUDENT") {
         navigate("/student-dashboard");
-      } else if (role === "LECTURER") {
+      } else if (userRole === "LECTURER") {
         navigate("/lecturer-dashboard");
       }
     } catch (err) {
@@ -59,7 +60,9 @@ export default function RegisterPage() {
             placeholder="Enter your name"
             className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
           />
         </div>
 

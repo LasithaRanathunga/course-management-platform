@@ -35,7 +35,9 @@ public class SecurityConfig {
                     corsConfig.setAllowedHeaders(List.of("*"));
                     return corsConfig;
                 }))
+                .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/api/auth/**").permitAll() // allow auth endpoints
                         .requestMatchers("/api/auth/me").authenticated()
                         .requestMatchers("/api/registrations/**").permitAll()

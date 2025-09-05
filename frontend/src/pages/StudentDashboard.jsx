@@ -44,12 +44,13 @@ export default function StudentDashboard() {
         { headers }
       );
       alert("Enrolled successfully!");
+      window.location.reload();
       // refresh enrolled courses
       const resEnrolled = await api.get("/registrations/my", { headers });
       setEnrolledCourses(resEnrolled.data);
     } catch (err) {
       console.error(err);
-      alert("Failed to enroll");
+      // alert("Failed to enroll");
     }
   };
 
